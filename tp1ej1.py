@@ -26,7 +26,7 @@ from multilayer_perceptron import Perceptron
 
 arguments = len(sys.argv) - 1
 if arguments < 2:
-	print ("Se necesitan 2 argumentos, modelo entrenado o archivo no existente, y path de archivo csv de datos" )
+	print ("Se necesitan 2 argumentos: nombre de archivo con modelo entrenado o vacio, y path de archivo csv de datos" )
 	sys.exit()
 
 
@@ -41,28 +41,22 @@ z = np.asarray([ [1] if zi == 'M' else [0] for zi in arr[:,:1] ])
 
 
 
-import errno
-
 try:
-	infile = open(pkl_file, 'rb')
-except EnvironmentError as e:     
-	print(type(e))
-	print(os.strerror(e.errno))
-# if task == "train":
-# 	layers = np.array([[]])
-# 	network = Perceptron()
-# 	filename = 'prueba'
+	#restoring trained network
+	infile = open(pkl_file,'rb')
+	trained_net = pickle.load(infile)
+	infile.close()
+	#take input to train
+	y = trained_net.predict(x)
+	print(y)
+except Exception as e:     
+	#train new network
+	layers = np.array([10,5,3,1])
+	network = Perceptron(layers)
+	err = network.train(x, z, epochs=8000, nu=0.05)
+	#saving trained network
+	outfile = open(pkl_file,'xb')
+	pickle.dump(network, outfile)
+	outfile.close()
 
-# 	#saving trained network
-# 	outfile = open(filename,'wb')
-# 	pickle.dump(p,outfile)
-# 	outfile.close()
-
-# else:
-# 	#restoring trained network
-# 	infile = open(filename,'rb')
-# 	trained_net = pickle.load(infile)
-# 	infile.close()
-# 	#take input to train
-# 	trained_net.predict()
 
