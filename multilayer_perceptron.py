@@ -89,11 +89,7 @@ class Perceptron():
         
         
     def predict(self, x):
-        y = x
-        for i in range (1,self.l-1):
-            y = np.dot(self.add_bias(y), self.w[i])
-        return y
-        #return self.activate(x)[-1]
+        return self.activate(x)[-1]
     
     
     def train(self, x, z, epochs=4000, nu=0.001, epsilon = 0.01, decay = 0.1):

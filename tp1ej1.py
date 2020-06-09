@@ -6,23 +6,11 @@ import pandas as pd
 from multilayer_perceptron import Perceptron
 
 
-#imprimir ayuda de uso, tipo 
-
-#obtener parametros de entrada (es entrenamiento o testeo,1) 
-# python tp1ej1.py nuevo_modelo tp1_ej1_training.csv
-
-# Si el archivo "nuevo_modelo" no existe, entonces el programa debería
-# usar los datos en "tp1_ej1_training.csv" para entrenar un modelo nuevo,
-# mostrando alguna información de su desempeño durante el entrenamiento, y
-# guardar el modelo entrenado en el nuevo archivo.
-
-# 2) python tp1ej1.py modelo_entrenado tp1_ej1_testing.csv)
-
-# Si el archivo "modelo_entrenado" existe, entonces debería cargar este
-# modelo y usar los datos en "tp1_ej1_testing.csv" para hacer un testeo,
-# mostrando información sobre el desempeño del modelo.
-# Count the arguments
-
+def roundToInt(x):
+	if(x > 0.5):
+		return 1
+	else:
+		return 0
 
 arguments = len(sys.argv) - 1
 if arguments < 2:
@@ -47,11 +35,16 @@ try:
 	trained_net = pickle.load(infile)
 	infile.close()
 	#take input to train
-	y = trained_net.predict(x)
-	print(y)
+	acum = 0
+	for i in range(0,x.shape[0]):
+		xi = roundToInt(trained_net.predict(x[i] ) )
+		if (xi == z[i]):
+			acum = acum + 1
+
+	print("Accuracy: " + str( (acum/x.shape[0]) * 100) )
+
 except Exception as e:     
-	#train new network
-	layers = np.array([10,5,3,1])
+	layers = np.array([10,20,20,20,20,20,1])
 	network = Perceptron(layers)
 	err = network.train(x, z, epochs=8000, nu=0.05)
 	#saving trained network
