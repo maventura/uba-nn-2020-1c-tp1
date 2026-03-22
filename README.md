@@ -1,4 +1,4 @@
-# Custom Machine Learning Models: MLP & Linear Regression
+# Custom Multilayer Perceptron & Linear Regression
 
 This repository contains a from-scratch implementation of a **Multilayer Perceptron (MLP)** and a **Linear Regression** model using Python and NumPy. The project was built for educational purposes to understand the inner workings of backpropagation, gradient descent, momentum, and weight decay without relying on high-level machine learning libraries like TensorFlow or scikit-learn.
 
