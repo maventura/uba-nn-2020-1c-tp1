@@ -4,13 +4,13 @@ This repository contains a from-scratch implementation of a **Multilayer Percept
 
 ##  Project Structure
 
-* multilayer_perceptron.py
+* multilayer_perceptron.py: 
   The core Object-Oriented implementation of the Multilayer Perceptron. It supports configurable layer architectures, customizable activation functions (Sigmoid, Step, Tanh), and backpropagation with weight decay.
-* tp1ej1.py
+* tp1ej1.py: 
   Command-line script for training and evaluating the MLP on a classification dataset. It includes data normalization and model serialization (saving/loading trained weights using Pickle).
-* tp1ej2.py
+* tp1ej2.py: 
   Command-line script for training and evaluating the Linear Regression model. It utilizes gradient descent with momentum and a two-stage learning rate scheduler.
-* linear_regression.ipynb & multi_layer_perceptron.ipynb
+* linear_regression.ipynb & multi_layer_perceptron.ipynb: 
   Jupyter Notebooks used for experimentation, hyperparameter tuning, and visualizing the Mean Squared Error (MSE) across training epochs.
 
 ##  Key Features
